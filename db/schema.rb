@@ -17,9 +17,9 @@ ActiveRecord::Schema.define(version: 20160822222928) do
     t.string   "offense_level"
     t.string   "gender"
     t.string   "age_group"
-    t.string   "race"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.string   "race_or_ethnicity"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
 end
