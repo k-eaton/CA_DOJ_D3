@@ -6,5 +6,7 @@
 
 * D3.js v. 4.2.2
 
+* SQLite v. 3
+
 Data sourced from: http://openjustice.doj.ca.gov/data
 

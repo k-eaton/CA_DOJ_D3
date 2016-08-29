@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+require 'smarter_csv'    
+
+options = {:remove_unmapped_keys => true, :chunk_size => 100}
+csv = SmarterCSV.process("data/death.csv", options)
+csv.each do |row|
+  Datum.create(row)
+end
