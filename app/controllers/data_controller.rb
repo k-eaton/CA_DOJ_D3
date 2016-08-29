@@ -3,8 +3,8 @@ require 'smarter_csv'
 class DataController < ApplicationController
   def index
 
-    options = {:remove_unmapped_keys => true}
-    @data = SmarterCSV.process("data/test.csv", options)
+    # options = {:remove_unmapped_keys => true}
+    # @data = SmarterCSV.process("data/test.csv", options)
     # csv_text = File.read('data/test.csv')
     # csv = CSV.parse(csv_text, :headers => true)
     # csv.each do |row|
@@ -13,6 +13,6 @@ class DataController < ApplicationController
       # Datum.create(non_id_portion)
     # end
 
-    # @data = Datum.all
+    @data = Datum.all
   end
 end
