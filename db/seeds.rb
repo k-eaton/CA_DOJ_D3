@@ -11,5 +11,5 @@ require 'smarter_csv'
 options = {:remove_unmapped_keys => true, :chunk_size => 100}
 csv = SmarterCSV.process("data/death.csv", options)
 csv.each do |row|
-  Datum.create(row)
+  Death.create(row)
 end
