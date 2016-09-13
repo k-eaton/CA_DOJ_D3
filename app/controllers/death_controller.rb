@@ -1,14 +1,21 @@
 class DeathController < ApplicationController
   def index
-    @deaths = Death.all
+    # @deaths = Death.all
   end
 
-  def race_data
-    race_data = {1 => "test"}
+  def death_data
+    @deaths = Death.all
+    # race_data = []
+
+    # @deaths.each do |death|
+    #   race_data << death.race
+    # end
+    
+    # race_data = {1 => "test"}
 
     respond_to do |format|
       format.json {
-        render :json => race_data
+        render :json => @deaths
       }
     end
 

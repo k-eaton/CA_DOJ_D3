@@ -8,15 +8,21 @@ $(document).ready(function() {
   	deathData = $.ajax({
 			        type: "GET",
 			        contentType: "application/json; charset=utf-8",
-			        url: '/death/race_data',
+			        url: '/death/death_data',
 			        dataType: 'json',
-			        data: 'race_data'
+			        success: function (deathData) {
+			        	console.log(deathData);
+               			// draw(raceData);
+		            },
+		            error: function (result) {
+		                error();
+		            }
 			    })
-    deathData.done(function(received_data) {
-       var div_where_to_draw = "div.d3";
-       console.log(received_data)
+    // raceData.done(function(received_data) {
+    //    var div_where_to_draw = "div.d3";
+    //    console.log(received_data)
        // racePieChart(div_where_to_draw, received_data);
-    })
+    // })
     //     error: function (result) {
     //     }
     // });

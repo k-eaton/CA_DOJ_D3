@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # get 'data/index'
   resources :death do
     collection do
-      get 'race_data'
+      get 'death_data', :defaults => { :format => 'json' }
     end
   end
   root 'death#index'
