@@ -1,44 +1,81 @@
-dataSet = [1, 2, 3, 4, 5]
-
 function racePieChart(data) {
-	var color = d3.schemeAccent; // d3.scale.category20b();
+
+	// var deathDataByRace = d3.nest()
+	// 	.key(function(d) {return d.race; })
+	// 	.entries(data);
+
+	// console.log(deathDataByRace)
+
+	var deathDataByRaceCount = d3.nest()
+		.key(function(d) {return d.race; })
+		.rollup(function(v) {return v.length; })
+		.entries(data);
+
+	console.log(deathDataByRaceCount)
 
 	var width = 460,
-	    height = 300,
-	    barHeight = 20,  // Create a bar graph to test import data
-	    radius = Math.min(width, height) / 2;
+		height = 300,
+		radius = Math.min(width, height) / 2;
 
-	var x = d3.scaleLinear() // d3.scale.linear()
-		.range([0, width])
-		.domain([0, d3.max(dataSet)]);
+	var color = d3.schemeAccent;
 
-	var chart = d3.select("#race")
-		.attr("width", width)
-		.attr("height", barHeight * dataSet.length);
+	// var chart = d3.select("#race")
+	// 	.attr("width", width)
+	// 	.attr("height", height);
 
-	var bar = chart.selectAll("g")
-		.data(dataSet)
-		.enter().append("g")
-		.attr("transform", function (d, i) {
-				return "translate(0," + i * barHeight + ")";
-			});
 
-	bar.append("rect")
-		.attr("width", x)
-		.attr("height", barHeight - 1)
-		.style("fill", function (d) {
-				return x(d) - 10;
-			});
+	// var arc = d3.arc()
+	//     .innerRadius(radius - 100)
+	//     .outerRadius(radius - 50);
 
-	bar.append ("text")
-		.attr("x", function (d){
-				return x(d) - 10;
-			})
-		.attr("y", barHeight / 2)
-		.attr("dy", ".35em")
-		.style("fill", "white")
-		.text(function(d) {
-				return d;
-			});
+	// var pie = d3.pie()
+	// 	.sort(null)
+	// 	.value(function(d) {return deathDataByRaceCount});
+
+	var svg = d3.select("#race")
+	    .attr("width", width)
+	    .attr("height", height)
+	    .append("g")
+	    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+	var arc = d3.arc()
+	    .innerRadius(0)
+	    .outerRadius(radius);
+
+	var pie = d3.pie()
+		.value(function(d) { return d.value; })
+		.sort(null);
+
+	var path = svg.selectAll("path")
+		.data(pie(deathDataByRaceCount))
+		.enter()
+		.append("path")
+		.attr("d", arc)
+		.attr("fill", function(d, i) {
+			return d3.color(d.data.key);
+		});
+
+
+	// var grads = svg.append("defs").selectAll("radialGradient").data(pie(deathDataByRaceCount))
+	//     .enter().append("radialGradient")
+	//     .attr("gradientUnits", "userSpaceOnUse")
+	//     .attr("cx", 0)
+	//     .attr("cy", 0)
+	//     .attr("r", "80%")
+	//     .attr("id", function(d, i) { return "grad" + i; });
+
+	// grads.append("stop").attr("offset", "0%").style("stop-color", "white");
+	// grads.append("stop").attr("offset", "100%").style("stop-color", function(d, i) { return d3.color(i); });
+
+	// g.append("path")
+ //      	.attr("d", arc)
+ //      	.style("fill", function(d) { return color(d.data.deathDataByRaceCount); });
+
+
+	// var path = svg.selectAll("path")
+	//     .data(pie(deathDataByRaceCount))
+	//   	.enter().append("path")
+	//     .attr("fill", function(d, i) { return "url(#grad" + i + ")"; })
+	//     .attr("d", arc);
 
 }

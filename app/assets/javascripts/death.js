@@ -12,20 +12,13 @@ $(document).ready(function() {
 			        dataType: 'json',
 			        success: function (deathData) {
 			        	console.log(deathData);
-               			racePieChart(dataSet);
+			        	barGraphTest(dataSet);
+               			racePieChart(deathData);
 		            },
 		            error: function (result) {
 		                error();
 		            }
 			    })
-    // raceData.done(function(received_data) {
-    //    var div_where_to_draw = "div.d3";
-    //    console.log(received_data)
-       // racePieChart(div_where_to_draw, received_data);
-    // })
-    //     error: function (result) {
-    //     }
-    // });
 });
 
 //   	function racePieChart(attachPoint, data){
