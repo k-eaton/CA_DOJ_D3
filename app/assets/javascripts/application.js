@@ -12,5 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require d3.min
+//= require_directory ./death_graphs/
 //= require_tree .

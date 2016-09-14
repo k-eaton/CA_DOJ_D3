@@ -12,7 +12,7 @@ $(document).ready(function() {
 			        dataType: 'json',
 			        success: function (deathData) {
 			        	console.log(deathData);
-               			// draw(raceData);
+               			racePieChart(dataSet);
 		            },
 		            error: function (result) {
 		                error();
