@@ -17,7 +17,7 @@ function racePieChart(data) {
 		height = 300,
 		radius = Math.min(width, height) / 2;
 
-	var color = d3.schemeAccent;
+	var color = d3.scaleOrdinal(d3.schemeCategory20b);
 
 	// var chart = d3.select("#race")
 	// 	.attr("width", width)
@@ -39,22 +39,12 @@ function racePieChart(data) {
 	    .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
 	var arc = d3.arc()
-	    .innerRadius(0)
+	    .innerRadius(radius - 100)
 	    .outerRadius(radius);
 
 	var pie = d3.pie()
 		.value(function(d) { return d.value; })
 		.sort(null);
-
-	var path = svg.selectAll("path")
-		.data(pie(deathDataByRaceCount))
-		.enter()
-		.append("path")
-		.attr("d", arc)
-		.attr("fill", function(d, i) {
-			return d3.color(d.data.key);
-		});
-
 
 	// var grads = svg.append("defs").selectAll("radialGradient").data(pie(deathDataByRaceCount))
 	//     .enter().append("radialGradient")
@@ -70,6 +60,18 @@ function racePieChart(data) {
 	// g.append("path")
  //      	.attr("d", arc)
  //      	.style("fill", function(d) { return color(d.data.deathDataByRaceCount); });
+	
+	var path = svg.selectAll("path")
+		.data(pie(deathDataByRaceCount))
+		.enter()
+		.append("path")
+		.attr("d", arc)
+		.attr("fill", function(d) {
+			return color(d.data.value);
+		})
+
+
+
 
 
 	// var path = svg.selectAll("path")
