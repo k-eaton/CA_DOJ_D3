@@ -11,8 +11,8 @@ $(document).ready(function() {
 			        url: '/death/death_data',
 			        dataType: 'json',
 			        success: function (deathData) {
-			        	console.log(deathData);
-			        	barGraphTest(dataSet);
+			        	// console.log(deathData);
+			        	// barGraphTest(dataSet);
                			racePieChart(deathData);
 		            },
 		            error: function (result) {
