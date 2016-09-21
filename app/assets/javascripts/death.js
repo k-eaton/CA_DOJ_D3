@@ -14,6 +14,7 @@ $(document).ready(function() {
 			        	// console.log(deathData);
 			        	// barGraphTest(dataSet);
                			racePieChart(deathData);
+               			racePieChartInteractive(deathData);
 		            },
 		            error: function (result) {
 		                error();

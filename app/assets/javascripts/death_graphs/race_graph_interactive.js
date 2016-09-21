@@ -1,4 +1,4 @@
-function racePieChart(data) {
+function racePieChartInteractive(data) {
 
 	//  determine death count by race
 	// var deathDataByRace = d3.nest()
@@ -7,10 +7,20 @@ function racePieChart(data) {
 
 	// console.log(deathDataByRace)
 
+	// function other(data) {
+	// 	parsedData = JSON.parse(data)
+	// 	if data.value < 1000
+	// 		data.key {other:}
+	// }
+
+
 	//  determine count by race and selecting the count as the value
 	var deathDataByRaceCount = d3.nest()
 		.key(function(d) { return d.race; })
-		.rollup(function(v) { return v.length; })
+		.rollup(function(v) { return  {
+			count: v.length,
+			other: v.length > 1000
+		}; })
 		.entries(data);
 
 	console.log(deathDataByRaceCount)
@@ -27,7 +37,7 @@ function racePieChart(data) {
 	var color = d3.scaleOrdinal(d3.schemeCategory20);
 
 	//  manipulate the svg
-	var svg = d3.select("#race")
+	var svg = d3.select("#race-interactive")
 	    .attr("width", width)
 	    .attr("height", height)
 	    .append("g")
@@ -50,7 +60,7 @@ function racePieChart(data) {
 		.data(pie(deathDataByRaceCount))
 		.enter()
 		.append("path")
-		.attr("d", arc)
+		.attr( "d", arc)
 		.attr("fill", function(d) {
 			return color(d.data.value);
 		})
