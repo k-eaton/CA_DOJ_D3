@@ -11,10 +11,11 @@ $(document).ready(function() {
 			        url: '/death/death_data',
 			        dataType: 'json',
 			        success: function (deathData) {
-			        	// console.log(deathData);
+			        	console.log(deathData);
 			        	// barGraphTest(dataSet);
                			racePieChart(deathData);
                			racePieChartInteractive(deathData);
+               			deathByYear(deathData);
 		            },
 		            error: function (result) {
 		                error();
